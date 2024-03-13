@@ -1,7 +1,7 @@
 {
-  "name": "repository-template",
+  "name": "weather-app-top",
   "version": "1.0.0",
-  "description": "Repository Template for my projects",
+  "description": "A Top Project using API for data and async/await for the syntax",
   "private": true,
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",

@@ -1,4 +1,3 @@
-# repository-template
-Repository Template for my projects 
+# weather-app-TOP
 
-This is mainly for webpack
+A Top Project using API for data and async/await for the syntax
