@@ -1,3 +1,3 @@
 import './style.css';
 
-alert("test");
+console.log(process.env.WEATHER_API_KEY);
