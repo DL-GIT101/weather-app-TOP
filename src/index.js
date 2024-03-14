@@ -1,3 +1,13 @@
 import './style.css';
+import { createSearchBar } from './dom';
 
-console.log(process.env.WEATHER_API_KEY);
+
+const WeatherApp = () => {
+
+    const searchBar = createSearchBar();
+
+    const body = document.querySelector('body');
+    body.append(searchBar);
+}
+
+WeatherApp();
