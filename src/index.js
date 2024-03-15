@@ -1,5 +1,5 @@
 import './style.css';
-import { createCityName, createCurrWeatherCondition, createSearchBar } from './dom';
+import { createCityName, createCurrWeatherCondition, createSearchBar, createWindCondition } from './dom';
 import { getWeatherData } from './weather';
 
 const WeatherApp = async () => {
@@ -18,7 +18,9 @@ const WeatherApp = async () => {
 
         const weatherCondition = createCurrWeatherCondition(currentWeatherData);
 
-        main.append(cityName,weatherCondition);        
+        const windCondition = createWindCondition(currentWeatherData);
+
+        main.append(cityName,weatherCondition,windCondition);        
         
     } catch (error) {
         console.error(error);

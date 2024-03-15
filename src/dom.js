@@ -50,8 +50,24 @@ const createCurrWeatherCondition = (weatherData) => {
     return container;
 }
 
-const createWindCondition = (speedKP,degree,) => {
+const createWindCondition = (weatherData) => {
+    
+    const title = document.createElement('p');
+    title.textContent = 'Wind';
+    title.className = 'title';
 
+    const direction = document.createElement('p');
+    direction.textContent = weatherData.wind_dir;
+    direction.className = 'direction';
+
+    const speed = document.createElement('p');
+    speed.textContent = weatherData.wind_kph;
+    speed.className = 'speed';
+
+    const container = document.createElement('container');
+    container.append(title,direction,speed);
+
+    return container;
 }
 
-export {createSearchBar, createCityName, createCurrWeatherCondition};
+export {createSearchBar, createCityName, createCurrWeatherCondition,createWindCondition};
