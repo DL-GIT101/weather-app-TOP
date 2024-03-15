@@ -10,4 +10,13 @@ const createSearchBar = () => {
 
 }
 
-export {createSearchBar};
+const createLocationLabel = (location) => {
+
+    const label = document.createElement('p');
+    label.textContent = location;
+    label.className = 'city';
+
+    return label;
+}
+
+export {createSearchBar, createLocationLabel};
