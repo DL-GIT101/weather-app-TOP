@@ -14,9 +14,9 @@ const WeatherApp = async () => {
         const locationData = weaterData.location;
         const currentWeatherData = weaterData.current;
         
-        const cityName = createCityName(locationData.name);
+        const cityName = createCityName(locationData);
 
-        const weatherCondition = createCurrWeatherCondition(currentWeatherData.condition, currentWeatherData.temp_c);
+        const weatherCondition = createCurrWeatherCondition(currentWeatherData);
 
         main.append(cityName,weatherCondition);        
         

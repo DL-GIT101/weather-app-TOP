@@ -12,10 +12,10 @@ const createSearchBar = () => {
 
 }
 
-const createCityName = (city) => {
+const createCityName = (cityData) => {
 
     const p = document.createElement('p');
-    p.textContent = city;
+    p.textContent = cityData.name;
     p.className = 'city';
 
     return p;
@@ -30,24 +30,28 @@ const createCurrTemp = (celcius) => {
     return p;
 }
 
-const createCurrWeatherCondition = (condition, celcius) => {
+const createCurrWeatherCondition = (weatherData) => {
 
-    const temp = createCurrTemp(celcius);
+    const temp = createCurrTemp(weatherData.temp_c);
     
     const weather = document.createElement('p');
-    weather.textContent = condition.text;
+    weather.textContent = weatherData.condition.text;
     weather.className = 'weather_condition';
 
     const icon = document.createElement('img');
     icon.className = 'weather_icon';
-    icon.alt = condition.text;
-    icon.src = condition.icon;
+    icon.alt = weatherData.condition.text;
+    icon.src = weatherData.condition.icon;
     weather.append(icon);
 
     const container = document.createElement('container');
     container.append(temp,weather);
 
     return container;
+}
+
+const createWindCondition = (speedKP,degree,) => {
+
 }
 
 export {createSearchBar, createCityName, createCurrWeatherCondition};
