@@ -10,13 +10,22 @@ const createSearchBar = () => {
 
 }
 
-const createLocationLabel = (location) => {
+const createCityName = (city) => {
 
-    const label = document.createElement('p');
-    label.textContent = location;
-    label.className = 'city';
+    const p = document.createElement('p');
+    p.textContent = city;
+    p.className = 'city';
 
-    return label;
+    return p;
 }
 
-export {createSearchBar, createLocationLabel};
+const createCurrTemp = (celcius) => {
+
+    const p = document.createElement('p');
+    p.textContent = celcius;
+    p.className = 'current_temperature';
+
+    return p;
+}
+
+export {createSearchBar, createCityName,createCurrTemp};

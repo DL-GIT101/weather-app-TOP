@@ -1,5 +1,5 @@
 import './style.css';
-import { createLocationLabel, createSearchBar } from './dom';
+import { createCityName, createCurrTemp, createSearchBar } from './dom';
 import { getWeatherData } from './weather';
 
 const WeatherApp = async () => {
@@ -14,10 +14,11 @@ const WeatherApp = async () => {
         const locationData = weaterData.location;
         const currentWeatherData = weaterData.current;
         
-        const cityName = createLocationLabel(locationData.name);
-        
+        const cityName = createCityName(locationData.name);
 
-        main.append(cityName);        
+        const currTemp = createCurrTemp(currentWeatherData.temp_c);
+
+        main.append(cityName,currTemp);        
         
     } catch (error) {
         console.error(error);
