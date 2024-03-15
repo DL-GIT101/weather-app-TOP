@@ -1,3 +1,5 @@
+import { cond } from "lodash";
+
 const createSearchBar = () => {
     const input = document.createElement('input');
     input.type = 'search'
@@ -35,6 +37,12 @@ const createCurrWeatherCondition = (condition, celcius) => {
     const weather = document.createElement('p');
     weather.textContent = condition.text;
     weather.className = 'weather_condition';
+
+    const icon = document.createElement('img');
+    icon.className = 'weather_icon';
+    icon.alt = condition.text;
+    icon.src = condition.icon;
+    weather.append(icon);
 
     const container = document.createElement('container');
     container.append(temp,weather);
