@@ -21,18 +21,11 @@ const createCityName = (cityData) => {
     return p;
 }
 
-const createCurrTemp = (celcius) => {
-
-    const p = document.createElement('p');
-    p.textContent = celcius;
-    p.className = 'current_temperature';
-
-    return p;
-}
-
 const createCurrWeatherCondition = (weatherData) => {
 
-    const temp = createCurrTemp(weatherData.temp_c);
+    const temp = document.createElement('p');
+    temp.textContent = weatherData.temp_c;
+    temp.className = 'current_temperature';
     
     const weather = document.createElement('p');
     weather.textContent = weatherData.condition.text;
