@@ -1,22 +1,52 @@
-import { cond } from "lodash";
+import { getWeatherData } from "./weather";
 
 const createSearchBar = () => {
+
     const input = document.createElement('input');
     input.type = 'search'
     input.placeholder = "Search City";
-
     input.name = 'search';
     input.id = 'searchCity';
 
-    return input;
+    const button = document.createElement('button');
+    button.className = "submit";
+    button.id = "submit";
+    button.textContent = "Search";
+    button.setAttribute("type", "submit");
 
+    const form = document.createElement('form');
+    form.addEventListener('submit', async (event) => {
+       try {
+            event.preventDefault();
+
+            const validatedCity = validateSearch();
+            const weatherData = await getWeatherData(validatedCity);
+            const main = document.querySelector('.main');
+
+            if(main.childNodes[1]){
+                main.removeChild(main.lastElementChild);
+            }
+            main.append(createCityWeatherDetails(weatherData));
+       } catch {
+
+       }
+       
+        
+    })
+    form.append(input,button);
+
+    return form;
 }
 
-const createCityName = (cityData) => {
+const createErrorPanel = (error) => {
+    
+}
+
+const createCityName = (location) => {
 
     const p = document.createElement('p');
-    p.textContent = cityData.name;
     p.className = 'city';
+    p.textContent = location.name;
 
     return p;
 }
@@ -85,4 +115,20 @@ const createOtherData = (weather) => {
     return container;
 }
 
-export {createSearchBar, createCityName, createCurrWeatherCondition, createWindCondition, createOtherData};
+const createCityWeatherDetails = (currentData) => {
+
+    const locationData = currentData.location;
+    const currentWeatherData = currentData.current;
+    
+    const cityName = createCityName(locationData);
+    const weatherCondition = createCurrWeatherCondition(currentWeatherData);
+    const windCondition = createWindCondition(currentWeatherData);
+    const otherDatas = createOtherData(currentWeatherData);
+
+    const container = document.createElement('container');
+    container.append(cityName,weatherCondition, windCondition, otherDatas);
+
+    return container;
+}
+
+export {createSearchBar, createCityWeatherDetails};
