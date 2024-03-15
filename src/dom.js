@@ -24,7 +24,7 @@ const createCityName = (cityData) => {
 const createCurrWeatherCondition = (weatherData) => {
 
     const temp = document.createElement('p');
-    temp.textContent = weatherData.temp_c;
+    temp.textContent = weatherData.temp_c + '°C';
     temp.className = 'current_temperature';
     
     const weather = document.createElement('p');
@@ -43,32 +43,46 @@ const createCurrWeatherCondition = (weatherData) => {
     return container;
 }
 
+const createDetails = (title,data) => {
+
+    const label = document.createElement('p');
+    label.textContent = title;
+    label.className = title.toLowerCase().replaceAll(' ', '');
+
+    const dataSpan = document.createElement('span');
+    dataSpan.textContent = data;
+    label.append(dataSpan);
+
+    return label;
+}
+
 const createWindCondition = (weatherData) => {
     
     const title = document.createElement('p');
     title.textContent = 'Wind';
     title.className = 'title';
 
-    const direction = document.createElement('p');
-    direction.textContent = 'Direction';
-    direction.className = 'direction';
+    const direction = createDetails('Direction', weatherData.wind_dir);
 
-    const directionData = document.createElement('span');
-    directionData.textContent = weatherData.wind_dir;
-    direction.append(directionData);
-
-    const speed = document.createElement('p');
-    speed.textContent = 'Speed';
-    speed.className = 'speed';
-
-    const speedData = document.createElement('span');
-    speedData.textContent = weatherData.wind_kph + ' km/h';
-    speed.append(speedData);
+    const speed = createDetails('Speed', weatherData.wind_kph + ' km/h')
 
     const container = document.createElement('container');
-    container.append(title,direction,speed);
+    container.append(title, direction, speed);
 
     return container;
 }
 
-export {createSearchBar, createCityName, createCurrWeatherCondition,createWindCondition};
+const createOtherData = (weather) => {
+
+    const humidity = createDetails('Humidity', weather.humidity + '%');
+    const realFeel = createDetails('Real Feel', weather.feelslike_c + '°C');
+    const uv = createDetails('UV', weather.uv);
+    const pressure = createDetails('Pressure', weather.pressure_mb + 'mbar');
+
+    const container = document.createElement('container');
+    container.append(humidity, realFeel, uv, pressure);
+
+    return container;
+}
+
+export {createSearchBar, createCityName, createCurrWeatherCondition, createWindCondition, createOtherData};
