@@ -1,5 +1,5 @@
 import './style.css';
-import { createCityName, createCurrWeatherCondition, createOtherData, createSearchBar, createWindCondition } from './dom';
+import { CreateErrorPanel, createCityWeatherDetails, createSearchBar } from './dom';
 import { getWeatherData } from './weather';
 
 const WeatherApp = async () => {
@@ -11,6 +11,24 @@ const WeatherApp = async () => {
         body.append(main);
 
         const search = createSearchBar();
+        search.addEventListener('submit', async () => {
+            try {
+                const city = document.querySelector('#searchCity').value;
+                const weather = await getWeatherData(city);
+                
+                if(main.childNodes[1]){
+                    main.removeChild(main.childNodes[1]);
+                }
+                main.append(createCityWeatherDetails(weather));
+    
+            } catch(error){
+                if(main.childNodes[1]){
+                    main.removeChild(main.childNodes[1]);
+                }
+                main.append(CreateErrorPanel(error.message));
+            }
+
+        });
         
         main.append(search);        
         
