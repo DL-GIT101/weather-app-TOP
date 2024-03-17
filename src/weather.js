@@ -2,7 +2,7 @@ const key = process.env.WEATHER_API_KEY;
 
 const getWeatherData = async (city) => {
     try {
-        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`, {mode: 'cors'});
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`, {mode: 'cors'});
         const data = await response.json();
 
         if(data.hasOwnProperty('error')){
