@@ -29,7 +29,13 @@ const WeatherApp = async () => {
                 if(main.childNodes[1]){
                     main.removeChild(main.childNodes[1]);
                 }
-                main.append(createErrorPanel(error.message));
+
+                let message = error.message;
+                
+                if(message === 'Failed to fetch weather data: Parameter q is missing.'){
+                    message = 'Failed to fetch weather data: Search bar is empty';
+                }
+                main.append(createErrorPanel(message));
             }
 
         });
