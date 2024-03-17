@@ -108,4 +108,16 @@ const createCityWeatherDetails = (currentData) => {
     return container;
 }
 
-export {createSearchBar, createCityWeatherDetails};
+const CreateErrorPanel = (error) => {
+
+    const message = document.createElement('p');
+    message.id = 'errorMessage';
+    message.textContent = error;
+
+    const container = document.createElement('container');
+    container.append(message);
+
+    return container;
+}
+
+export {createSearchBar, createCityWeatherDetails, CreateErrorPanel};
