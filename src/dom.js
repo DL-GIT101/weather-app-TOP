@@ -21,11 +21,15 @@ const createSearchBar = () => {
 
 const createCityName = (location) => {
 
-    const p = document.createElement('p');
-    p.className = 'city';
-    p.textContent = location.name;
+    const name = document.createElement('p');
+    name.className = 'name';
+    name.textContent = location.name;
 
-    return p;
+    const container = document.createElement('container');
+    container.className = 'city';
+    container.append(name);
+
+    return container;
 }
 
 const createCurrWeatherCondition = (weatherData) => {
@@ -42,10 +46,10 @@ const createCurrWeatherCondition = (weatherData) => {
     icon.className = 'weather_icon';
     icon.alt = weatherData.condition.text;
     icon.src = weatherData.condition.icon;
-    weather.append(icon);
 
     const container = document.createElement('container');
-    container.append(temp,weather);
+    container.className = 'weather';
+    container.append(temp,icon,weather);
 
     return container;
 }
@@ -74,6 +78,7 @@ const createWindCondition = (weatherData) => {
     const speed = createDetails('Speed', weatherData.wind_kph + ' km/h')
 
     const container = document.createElement('container');
+    container.className = 'wind';
     container.append(title, direction, speed);
 
     return container;
@@ -87,6 +92,7 @@ const createOtherData = (weather) => {
     const pressure = createDetails('Pressure', weather.pressure_mb + 'mbar');
 
     const container = document.createElement('container');
+    container.className = 'other';
     container.append(humidity, realFeel, uv, pressure);
 
     return container;
@@ -103,6 +109,7 @@ const createCityWeatherDetails = (currentData) => {
     const otherDatas = createOtherData(currentWeatherData);
 
     const container = document.createElement('container');
+    container.className = 'details';
     container.append(cityName,weatherCondition, windCondition, otherDatas);
 
     return container;
@@ -115,6 +122,7 @@ const createErrorPanel = (error) => {
     message.textContent = error;
 
     const container = document.createElement('container');
+    container.className = 'details';
     container.append(message);
 
     return container;
@@ -127,6 +135,7 @@ const createLoadingPanel = () => {
     message.textContent = 'Loading...';
 
     const container = document.createElement('container');
+    container.className = 'details';
     container.append(message);
 
     return container;
