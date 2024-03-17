@@ -1,5 +1,3 @@
-import { getWeatherData } from "./weather";
-
 const createSearchBar = () => {
 
     const input = document.createElement('input');
@@ -15,31 +13,10 @@ const createSearchBar = () => {
     button.setAttribute("type", "submit");
 
     const form = document.createElement('form');
-    form.addEventListener('submit', async (event) => {
-       try {
-            event.preventDefault();
-
-            const validatedCity = validateSearch();
-            const weatherData = await getWeatherData(validatedCity);
-            const main = document.querySelector('.main');
-
-            if(main.childNodes[1]){
-                main.removeChild(main.lastElementChild);
-            }
-            main.append(createCityWeatherDetails(weatherData));
-       } catch {
-
-       }
-       
-        
-    })
+    form.addEventListener('submit', (event) => event.preventDefault());
     form.append(input,button);
 
     return form;
-}
-
-const createErrorPanel = (error) => {
-    
 }
 
 const createCityName = (location) => {
