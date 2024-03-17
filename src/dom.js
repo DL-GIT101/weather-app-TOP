@@ -124,7 +124,7 @@ const createLoadingPanel = () => {
 
     const message = document.createElement('p');
     message.id = 'loading';
-    message.textContent = 'Loading';
+    message.textContent = 'Loading...';
 
     const container = document.createElement('container');
     container.append(message);
