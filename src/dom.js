@@ -23,7 +23,7 @@ const createCityName = (location) => {
 
     const name = document.createElement('p');
     name.className = 'name';
-    name.textContent = location.name;
+    name.textContent = location.name + ', ' + location.region + ', ' + location.country;
 
     const container = document.createElement('container');
     container.className = 'city';
